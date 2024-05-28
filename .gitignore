@@ -1,0 +1,8 @@
+# images
+/CLAHE_images
+/Breast_mammography
+/model_weights/*.png
+/model_weights/*.jpg
+
+# environments
+.venv
