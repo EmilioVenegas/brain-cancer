@@ -3,6 +3,6 @@
 /Breast_mammography
 /model_weights/*.png
 /model_weights/*.jpg
-
+/api/venv
 # environments
 .venv

@@ -1,9 +1,6 @@
-// src/components/UploadPhoto.js
-// This component allows users to upload a mammography image,
-// preview it, and check for cancer using a server-side analysis.
-
 import React, { useState } from "react";
 import {
+  Link,
   Fade,
   ScaleFade,
   Slide,
@@ -26,11 +23,14 @@ import {
   StatHelpText,
   StatArrow,
   StatGroup,
+  useColorMode,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { px } from "framer-motion";
 
 const UploadPhoto = () => {
+  const { colorMode, toggleColorMode } = useColorMode(); // Hook to toggle color mode
+
   // State variables to store image data, image preview URL, and analysis result
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState("");
@@ -141,7 +141,31 @@ const UploadPhoto = () => {
   // Render the upload form and preview
   return (
     <VStack spacing={5} padding={5}>
-      <Heading>Upload a Mammography</Heading>
+      <Button size="xs" onClick={toggleColorMode}>
+        {colorMode === "light" ? "Dark Mode" : "Light Mode"}
+      </Button>
+      <Heading textAlign="center">
+        CancerSense: AI-Powered Mammography Analyzer
+      </Heading>
+      <Box justifyContent="center" width="50%" alignItems="center">
+        <Text textAlign="justify">
+          CancerSense is an advanced web application utilizing Convolutional
+          Neural Networks (CNNs) for mammography analysis. Upload your
+          mammography images to receive instant probabilities for cancer
+          detection, distinguishing between benign and malignant tumors, and
+          identifying normal scans.
+        </Text>
+        <Text textAlign="justify">
+          CancerSense uses mammography images from INbreast, MIAS, and DDSM
+          datasets, enhanced with preprocessing techniques. The dataset is
+          resized to 227x227 pixels. <br />
+          Credit: Lin, Ting-Yu, and Huang, Mei-Ling.
+          <Link href="https://doi.org/10.17632/ywsbh3ndr8.2" isExternal>
+            Dataset of Breast mammography images with Masses
+          </Link>
+        </Text>
+      </Box>
+
       <Box justifyContent="center" alignItems="center">
         {/* Hidden file input element */}
         <Input
@@ -159,7 +183,7 @@ const UploadPhoto = () => {
           colorScheme="pink"
           cursor="pointer"
         >
-          Choose Image
+          Upload Mammography
         </Button>
         {/* Display file name if image is selected */}
         {imagePreview && (
@@ -177,19 +201,22 @@ const UploadPhoto = () => {
           borderRadius="1rem"
         />
       )}
-
       {/* Button for cancer analysis */}
-
       {imagePreview && (
         <Button colorScheme="pink" onClick={handleSubmit}>
           Check for Cancer
         </Button>
       )}
-
       {/* Display analysis result */}
-
       {result && (
-        <Flex alignItems="center">
+        <Flex
+          bg={colorMode}
+          borderRadius="1.5rem"
+          borderColor="gray.300"
+          borderWidth="1px"
+          p="1rem"
+          alignItems="center"
+        >
           <Box>
             <Stat>
               <StatLabel>Result</StatLabel>
