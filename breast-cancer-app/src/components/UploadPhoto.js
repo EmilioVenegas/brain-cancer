@@ -20,6 +20,7 @@ const UploadPhoto = () => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState("");
   const [result, setResult] = useState("");
+  const [probability, setProbability] = useState("");
   // Toast function for displaying notifications to the user
   const toast = useToast();
 
@@ -50,6 +51,51 @@ const UploadPhoto = () => {
     const formData = new FormData();
     formData.append("file", image);
 
+    try {
+      // Send the image for analysis to the local server using Axios
+      const response = await axios.post(
+        "http://127.0.0.1:5000/predict",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          timeout: 5000,
+        }
+      );
+
+      // Handle the analysis result and display
+      console.log(response);
+
+      const clasification = {
+        0: "Normal",
+        1: "Benign",
+        2: "Malign",
+      };
+
+      setResult(clasification[response.data.prediction]);
+      setProbability(response.data.probability * 100 + "%");
+
+      // Assuming the response data contains a message or relevant data
+      toast({
+        title: "Image analysis successful",
+        // description: response.data.prediction, // Adjust according to your response structure
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      // Handle errors and display an error toast
+      console.log(error);
+      toast({
+        title: "Error uploading image",
+        description: error.response?.data?.message || error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
     // Send the image for analysis
 
     // Handle the analysis result and display
@@ -59,7 +105,7 @@ const UploadPhoto = () => {
   return (
     <VStack spacing={5} padding={5}>
       <Heading>Upload a Mammography</Heading>
-      <Box>
+      <Box justifyContent="center" alignItems="center">
         {/* Hidden file input element */}
         <Input
           type="file"
@@ -79,11 +125,15 @@ const UploadPhoto = () => {
           Choose File
         </Button>
         {/* Display file name if image is selected */}
-        {imagePreview && <Text mt={2}>File: {image?.name}</Text>}
+        {imagePreview && (
+          <Text mt={2} maxWidth="15rem">
+            File: {image?.name}
+          </Text>
+        )}
       </Box>
       {/* Display image preview */}
       {imagePreview && (
-        <Image src={imagePreview} alt="Mammography Preview" boxSize="300px" />
+        <Image src={imagePreview} alt="Mammography Preview" boxSize="227px" />
       )}
 
       {/* Button for cancer analysis */}
@@ -95,6 +145,7 @@ const UploadPhoto = () => {
       {result && (
         <Box mt={5} p={5} borderWidth="1px" borderRadius="lg" width="100%">
           <Text fontSize="lg">Result: {result}</Text>
+          <Text fontSize="lg">Probability: {probability}</Text>
         </Box>
       )}
     </VStack>
