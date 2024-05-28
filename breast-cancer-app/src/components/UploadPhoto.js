@@ -4,6 +4,14 @@
 
 import React, { useState } from "react";
 import {
+  Fade,
+  ScaleFade,
+  Slide,
+  SlideFade,
+  Collapse,
+  Flex,
+  CircularProgress,
+  CircularProgressLabel,
   Box,
   Button,
   Image,
@@ -12,8 +20,15 @@ import {
   Heading,
   Text,
   useToast,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { px } from "framer-motion";
 
 const UploadPhoto = () => {
   // State variables to store image data, image preview URL, and analysis result
@@ -23,6 +38,28 @@ const UploadPhoto = () => {
   const [probability, setProbability] = useState("");
   // Toast function for displaying notifications to the user
   const toast = useToast();
+  const getColor = (probability) => {
+    if (probability > 75) {
+      return "green.400";
+    } else if (probability > 50) {
+      return "orange.400";
+    } else {
+      return "red.400";
+    }
+  };
+  // Determine the color based on diagnosis result
+  const getResultColor = (result) => {
+    switch (result) {
+      case "Normal":
+        return "blue.500";
+      case "Benign":
+        return "green.500";
+      case "Malign":
+        return "red.600";
+      default:
+        return "gray.400";
+    }
+  };
 
   // Event handler for when the user selects an image file
   const handleImageChange = (e) => {
@@ -74,7 +111,7 @@ const UploadPhoto = () => {
       };
 
       setResult(clasification[response.data.prediction]);
-      setProbability(response.data.probability * 100 + "%");
+      setProbability((response.data.probability * 100).toFixed(1));
 
       // Assuming the response data contains a message or relevant data
       toast({
@@ -122,31 +159,64 @@ const UploadPhoto = () => {
           colorScheme="pink"
           cursor="pointer"
         >
-          Choose File
+          Choose Image
         </Button>
         {/* Display file name if image is selected */}
         {imagePreview && (
-          <Text mt={2} maxWidth="15rem">
+          <Text mt={2} maxWidth="15rem" fontSize="xs">
             File: {image?.name}
           </Text>
         )}
       </Box>
       {/* Display image preview */}
       {imagePreview && (
-        <Image src={imagePreview} alt="Mammography Preview" boxSize="227px" />
+        <Image
+          src={imagePreview}
+          alt="Mammography Preview"
+          boxSize="227px"
+          borderRadius="1rem"
+        />
       )}
 
       {/* Button for cancer analysis */}
-      <Button colorScheme="pink" onClick={handleSubmit}>
-        Check for Cancer
-      </Button>
+
+      {imagePreview && (
+        <Button colorScheme="pink" onClick={handleSubmit}>
+          Check for Cancer
+        </Button>
+      )}
 
       {/* Display analysis result */}
+
       {result && (
-        <Box mt={5} p={5} borderWidth="1px" borderRadius="lg" width="100%">
-          <Text fontSize="lg">Result: {result}</Text>
-          <Text fontSize="lg">Probability: {probability}</Text>
-        </Box>
+        <Flex alignItems="center">
+          <Box>
+            <Stat>
+              <StatLabel>Result</StatLabel>
+              <StatNumber fontSize="2.5rem" color={getResultColor(result)}>
+                {result}
+              </StatNumber>
+              <StatHelpText></StatHelpText>
+            </Stat>
+          </Box>
+          <Flex alignItems="center">
+            <Box ml={10}>
+              <Stat>
+                <StatLabel>Certainty</StatLabel>
+              </Stat>
+              <CircularProgress
+                value={probability}
+                color={getColor(probability)}
+                thickness="10px"
+                size="4.2rem"
+              >
+                <CircularProgressLabel fontSize="0.8rem" fontWeight="bold">
+                  {probability}%
+                </CircularProgressLabel>
+              </CircularProgress>
+            </Box>
+          </Flex>
+        </Flex>
       )}
     </VStack>
   );
