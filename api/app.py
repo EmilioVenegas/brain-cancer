@@ -14,7 +14,7 @@ model = tf.keras.models.load_model(
 )
 
 
-@app.route("/predict", methods=["POST"])
+@app.route("/predict", methods=["POST"])    
 def process_image():
     file = request.files["file"]
     img = Image.open(file).convert("L")

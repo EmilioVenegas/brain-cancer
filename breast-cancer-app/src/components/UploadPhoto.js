@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import {
   Link,
-  Fade,
-  ScaleFade,
-  Slide,
-  SlideFade,
-  Collapse,
   Flex,
   CircularProgress,
   CircularProgressLabel,
@@ -21,12 +16,11 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
-  StatArrow,
-  StatGroup,
+  HStack,
   useColorMode,
 } from "@chakra-ui/react";
+import { SearchIcon, AttachmentIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { px } from "framer-motion";
 
 const UploadPhoto = () => {
   const { colorMode, toggleColorMode } = useColorMode(); // Hook to toggle color mode
@@ -140,112 +134,151 @@ const UploadPhoto = () => {
 
   // Render the upload form and preview
   return (
-    <VStack spacing={5} padding={5}>
-      <Button size="xs" onClick={toggleColorMode}>
+    <Flex
+      bgImage="url('pawel.jpg')"
+      height="110vh"
+      bgPosition="center"
+      bgSize="cover"
+      p={5}
+      justifyContent="center"
+    >
+      <VStack
+        borderRadius="1.5rem"
+        spacing={5}
+        padding={5}
+        height="100%"
+        backdropFilter="blur(200px) brightness(105%)"
+        maxWidth="50rem"
+      >
+        {/* <Button size="xs" onClick={toggleColorMode}>
         {colorMode === "light" ? "Dark Mode" : "Light Mode"}
-      </Button>
-      <Heading textAlign="center">
-        CancerSense: AI-Powered Mammography Analyzer
-      </Heading>
-      <Box justifyContent="center" width="50%" alignItems="center">
-        <Text textAlign="justify">
-          CancerSense is an advanced web application utilizing Convolutional
-          Neural Networks (CNNs) for mammography analysis. Upload your
-          mammography images to receive instant probabilities for cancer
-          detection, distinguishing between benign and malignant tumors, and
-          identifying normal scans.
-        </Text>
-        <Text textAlign="justify">
-          CancerSense uses mammography images from INbreast, MIAS, and DDSM
-          datasets, enhanced with preprocessing techniques. The dataset is
-          resized to 227x227 pixels. <br />
-          Credit: Lin, Ting-Yu, and Huang, Mei-Ling.
-          <Link href="https://doi.org/10.17632/ywsbh3ndr8.2" isExternal>
-            Dataset of Breast mammography images with Masses
-          </Link>
-        </Text>
-      </Box>
-
-      <Box justifyContent="center" alignItems="center">
-        {/* Hidden file input element */}
-        <Input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          id="file-upload"
-          style={{ display: "none" }}
-        />
-
-        {/* Button to trigger file input selection */}
-        <Button
-          as="label"
-          htmlFor="file-upload"
-          colorScheme="pink"
-          cursor="pointer"
-        >
-          Upload Mammography
-        </Button>
-        {/* Display file name if image is selected */}
-        {imagePreview && (
-          <Text mt={2} maxWidth="15rem" fontSize="xs">
-            File: {image?.name}
-          </Text>
-        )}
-      </Box>
-      {/* Display image preview */}
-      {imagePreview && (
-        <Image
-          src={imagePreview}
-          alt="Mammography Preview"
-          boxSize="227px"
-          borderRadius="1rem"
-        />
-      )}
-      {/* Button for cancer analysis */}
-      {imagePreview && (
-        <Button colorScheme="pink" onClick={handleSubmit}>
-          Check for Cancer
-        </Button>
-      )}
-      {/* Display analysis result */}
-      {result && (
-        <Flex
-          bg={colorMode}
-          borderRadius="1.5rem"
-          borderColor="gray.300"
-          borderWidth="1px"
-          p="1rem"
+      </Button> */}
+        <HStack spacing={0}>
+          <Image borderRadius="full" boxSize="80px" src="logo.png" alt="logo" />
+          <VStack spacing={0}>
+            <Heading textAlign="center" fontSize="3.5rem">
+              CancerSense
+            </Heading>
+            <Heading textAlign="center" fontSize="1.2rem">
+              AI-Powered Mammography Analyzer
+            </Heading>
+          </VStack>
+        </HStack>
+        <Box
+          justifyContent="center"
+          width="38rem"
+          maxWidth="100%"
           alignItems="center"
         >
-          <Box>
-            <Stat>
-              <StatLabel>Result</StatLabel>
-              <StatNumber fontSize="2.5rem" color={getResultColor(result)}>
-                {result}
-              </StatNumber>
-              <StatHelpText></StatHelpText>
-            </Stat>
-          </Box>
-          <Flex alignItems="center">
-            <Box ml={10}>
-              <Stat>
-                <StatLabel>Certainty</StatLabel>
-              </Stat>
-              <CircularProgress
-                value={probability}
-                color={getColor(probability)}
-                thickness="10px"
-                size="4.2rem"
-              >
-                <CircularProgressLabel fontSize="0.8rem" fontWeight="bold">
-                  {probability}%
-                </CircularProgressLabel>
-              </CircularProgress>
-            </Box>
-          </Flex>
+          <Text textAlign="center" fontSize="0.8rem">
+            CancerSense is an advanced web application utilizing Convolutional
+            Neural Networks (CNNs) for mammography analysis. Upload your
+            mammography images to receive instant probabilities for cancer
+            detection, distinguishing between benign and malignant tumors, and
+            identifying normal scans. <br />
+          </Text>
+
+          <Text textAlign="center" fontSize="0.6rem" color="gray.500">
+            CancerSense uses mammography images from INbreast, MIAS, and DDSM
+            datasets, enhanced with preprocessing techniques. The dataset is
+            resized to 227x227 pixels. Credit: Lin, Ting-Yu, and Huang,
+            Mei-Ling.
+            <Link href="https://doi.org/10.17632/ywsbh3ndr8.2" isExternal>
+              Dataset of Breast mammography images with Masses
+            </Link>
+          </Text>
+        </Box>
+
+        <Flex flexDir="column" justifyContent="center" alignItems="center">
+          {/* Hidden file input element */}
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            id="file-upload"
+            style={{ display: "none" }}
+          />
+
+          {/* Button to trigger file input selection */}
+          <Button
+            as="label"
+            htmlFor="file-upload"
+            fontColor="black"
+            // colorScheme="white"
+            backgroundColor="rgba(255,255,255,0.4)"
+            cursor="pointer"
+            size="sm"
+            leftIcon={<AttachmentIcon />}
+          >
+            Upload Mammography
+          </Button>
+          {/* Display file name if image is selected */}
+          {imagePreview && (
+            <Text mt={2} textAlign="center" fontSize="0.5rem">
+              File: {image?.name}
+            </Text>
+          )}
         </Flex>
-      )}
-    </VStack>
+        {/* Display image preview */}
+        {imagePreview && (
+          <Image
+            src={imagePreview}
+            alt="Mammography Preview"
+            boxSize="227px"
+            borderRadius="1rem"
+            boxShadow="rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px"
+          />
+        )}
+        {/* Button for cancer analysis */}
+        {imagePreview && (
+          <Button
+            leftIcon={<SearchIcon />}
+            colorScheme="pink"
+            onClick={handleSubmit}
+          >
+            Check for Cancer
+          </Button>
+        )}
+        {/* Display analysis result */}
+        {result && (
+          <Flex
+            bg={colorMode}
+            borderRadius="1.5rem"
+            borderColor="gray.300"
+            backgroundColor="rgba(255,255,255,0.7)"
+            p="1rem"
+            alignItems="center"
+          >
+            <Box>
+              <Stat>
+                <StatLabel>Result</StatLabel>
+                <StatNumber fontSize="2.5rem" color={getResultColor(result)}>
+                  {result}
+                </StatNumber>
+                <StatHelpText></StatHelpText>
+              </Stat>
+            </Box>
+            <Flex alignItems="center">
+              <Box ml={10}>
+                <Stat>
+                  <StatLabel>Certainty</StatLabel>
+                </Stat>
+                <CircularProgress
+                  value={probability}
+                  color={getColor(probability)}
+                  thickness="10px"
+                  size="4.2rem"
+                >
+                  <CircularProgressLabel fontSize="0.8rem" fontWeight="bold">
+                    {probability}%
+                  </CircularProgressLabel>
+                </CircularProgress>
+              </Box>
+            </Flex>
+          </Flex>
+        )}
+      </VStack>
+    </Flex>
   );
 };
 

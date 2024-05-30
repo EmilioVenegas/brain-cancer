@@ -1,5 +1,5 @@
 // src/app/page.tsx
-"use client"; // Add this to mark the component as a Client Component
+"use client";
 
 import React from "react";
 import {
