@@ -10,16 +10,6 @@ The trained model accurately classifies images into three categories: normal, be
 
 This application aims to assist medical professionals and researchers in the early detection and diagnosis of breast cancer.
 
-## 📍 Table of Contents
-
-- [Technologies Used](https://github.com/LaloVene/Image-Captioning-Project#-technologies-used)
-- [Architecture](https://github.com/LaloVene/Image-Captioning-Project#-architecture)
-- [Workflow](https://github.com/LaloVene/Image-Captioning-Project#-site-overview)
-- [Installation](https://github.com/LaloVene/Image-Captioning-Project#%EF%B8%8F-installation)
-- [Usage](https://github.com/LaloVene/Image-Captioning-Project#-usage)
-- [Contributing](https://github.com/LaloVene/Image-Captioning-Project#-contributing)
-- [CI/CD](https://github.com/LaloVene/Image-Captioning-Project#-cicd)
-
 ## 💻 Technologies Used
 
 - TensorFlow
