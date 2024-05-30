@@ -65,6 +65,14 @@ Result Display: Classification results (normal, benign, or malignant) and their 
 
 Error Handling: Informative error messages guide users through any upload or analysis failures.
 
+## Full Code CNN for Multi-Class Mammography Image Classification with TensorFlow
+
+[Jupyter Notebook](https://github.com/EmilioVenegas/breast-cancer-app/blob/main/CNN_breast_cancer.ipynb)
+
+## Cropped Resized and augmented dataset
+
+[Jupyter Notebook](https://github.com/EmilioVenegas/breast-cancer-app/blob/main/CNN_breast_cancer.ipynb)
+
 ## 💼 Usage
 
 ```bash
