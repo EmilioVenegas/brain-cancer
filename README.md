@@ -1,4 +1,4 @@
-# Image-Captioning-Project
+# AI-Powered Mammography Image Analyzer: Cancer Detection and Classification Web App
 
 By Emilio Venegas-Hernández.
 
