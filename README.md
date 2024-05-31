@@ -26,34 +26,47 @@ This application aims to assist medical professionals and researchers in the ear
 
 ## 📚 Workflow
 
+### User Interface with React and Chakra UI:
+
+-The application provides a user-friendly interface built with React and styled using Chakra UI components.
+-Users can upload a mammography image, view image previews, and initiate cancer analysis.
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/c784124d-96bc-4674-85a6-f5005e7e89ef)
+
 ### Image Upload:
 
-- Users select and upload mammography images through a file input component, and the selected image is previewed on the screen.
+-Users select and upload mammography images through a file input component, and the selected image is previewed on the screen.
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/d8db3c69-0fe0-46e4-bdb3-6b7f7261bfed)
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/829f9e9b-d86d-4eec-9595-1b3455a5e44a)
 
 ### Form Submission and Image Analysis:
 
-- When users click the "Check for Cancer" button, the application sends the selected image to the backend server for analysis.
+-When users click the "Check for Cancer" button, the application sends the selected image to the backend server for analysis.
 
 ### Backend Processing with Flask:
 
-- The Flask server processes the uploaded image using a Convolutional Neural Network (CNN) model built with TensorFlow (Architecture based on model from Basel Anaya)
-- The model analyzes the image and returns a classification result (normal, benign, or malignant) along with a probability score.
+-The Flask server processes the uploaded image using a Convolutional Neural Network (CNN) model built with TensorFlow.
+-The model analyzes the image and returns a classification result (normal, benign, or malignant) along with a probability score.
 
 ### Handling the Response:
 
-- The response from the server contains the classification result and the probability score.
-- These values are displayed on the UI, and a toast notification informs the user of the successful analysis.
+-The response from the server contains the classification result and the probability score.
+-These values are displayed on the UI, and a toast notification informs the user of the successful analysis.
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/b00a0fb6-5b27-4d3a-bdd8-b1e131481f56)
 
 ### Result Visualization:
 
-- The classification result and probability score are visually represented on the UI.
-- The classification result is displayed with a color code indicating the category (normal, benign, or malignant).
-- The probability score is shown using a circular progress bar, color-coded to indicate the level of certainty.
+-The classification result and probability score are visually represented on the UI.
+-The classification result is displayed with a color code indicating the category (normal, benign, or malignant).
+-The probability score is shown using a circular progress bar, color-coded to indicate the level of certainty.
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/2ee7f3b4-b8b0-4713-9736-b7d67f71baed)
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/724f41e9-f5e9-4826-a042-a87d4b241d2c)
+
 
 ### Error Handling:
 
-- If any errors occur during the image upload or analysis process, appropriate toast notifications inform the user of the issue.
-- Error messages from the server response are captured and presented to the user for clarity.
+-If any errors occur during the image upload or analysis process, appropriate toast notifications inform the user of the issue.
+-Error messages from the server response are captured and presented to the user for clarity.
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/640f8637-24af-4add-894a-1751f3dd4a01)
 
 ## 🔍 Site Overview
 
