@@ -30,12 +30,13 @@ This application aims to assist medical professionals and researchers in the ear
 
 -The application provides a user-friendly interface built with React and styled using Chakra UI components.
 -Users can upload a mammography image, view image previews, and initiate cancer analysis.
-![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/c784124d-96bc-4674-85a6-f5005e7e89ef)
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/18876dab-54ff-4e42-9fcd-8dce1a2e175c)
+
 
 ### Image Upload:
 
 -Users select and upload mammography images through a file input component, and the selected image is previewed on the screen.
-![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/d8db3c69-0fe0-46e4-bdb3-6b7f7261bfed)
+
 ![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/829f9e9b-d86d-4eec-9595-1b3455a5e44a)
 
 ### Form Submission and Image Analysis:
@@ -58,7 +59,7 @@ This application aims to assist medical professionals and researchers in the ear
 -The classification result and probability score are visually represented on the UI.
 -The classification result is displayed with a color code indicating the category (normal, benign, or malignant).
 -The probability score is shown using a circular progress bar, color-coded to indicate the level of certainty.
-![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/2ee7f3b4-b8b0-4713-9736-b7d67f71baed)
+![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/9eecf0d5-de57-4541-9e17-02fb620d8fe3)
 ![image](https://github.com/EmilioVenegas/breast-cancer-app/assets/82345379/724f41e9-f5e9-4826-a042-a87d4b241d2c)
 
 
