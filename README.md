@@ -36,7 +36,7 @@ This application aims to assist medical professionals and researchers in the ear
 
 ### Backend Processing with Flask:
 
-- The Flask server processes the uploaded image using a Convolutional Neural Network (CNN) model built with TensorFlow (Architecture based on model from BASEL ANAYA)
+- The Flask server processes the uploaded image using a Convolutional Neural Network (CNN) model built with TensorFlow (Architecture based on model from Basel Anaya)
 - The model analyzes the image and returns a classification result (normal, benign, or malignant) along with a probability score.
 
 ### Handling the Response:

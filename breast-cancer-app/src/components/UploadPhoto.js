@@ -171,7 +171,7 @@ const UploadPhoto = () => {
           alignItems="center"
         >
           <Text textAlign="center" fontSize="0.8rem">
-            CancerSense is an advanced web application utilizing Convolutional
+            CancerSense is a web application that utilizes Convolutional
             Neural Networks (CNNs) for mammography analysis. Upload your
             mammography images to receive instant probabilities for cancer
             detection, distinguishing between benign and malignant tumors, and
