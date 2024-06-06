@@ -1,5 +1,7 @@
 # images
-/CLAHE_images
+/concatenated_images
+/processed_images
+/semi_processed_images
 /Breast_mammography
 
 /api/venv
