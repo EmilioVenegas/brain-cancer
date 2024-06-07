@@ -3,7 +3,7 @@
 /processed_images
 /semi_processed_images
 /Breast_mammography
-
+/images
 /api/venv
 # environments
 .venv

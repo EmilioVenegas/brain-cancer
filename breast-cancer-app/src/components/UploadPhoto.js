@@ -98,10 +98,18 @@ const UploadPhoto = () => {
       // Handle the analysis result and display
       console.log(response);
 
-      const clasification = {
-        0: "Normal",
-        1: "Benign",
-        2: "Malign",
+      const classification = {
+        0: "_NORMAL",
+        1: "Ependimoma",
+        2: "Germinoma",
+        3: "Granuloma",
+        4: "Neurocitoma",
+        5: "Schwannoma",
+        6: "Astrocitoma",
+        7: "Ganglioglioma",
+        8: "Glioblastoma",
+        9: "Meduloblastoma",
+        10: "Oligodendroglioma",
       };
 
       setResult(clasification[response.data.prediction]);
@@ -135,7 +143,7 @@ const UploadPhoto = () => {
   // Render the upload form and preview
   return (
     <Flex
-      bgImage="url('pawel.jpg')"
+      bgImage="url('brain.jpg')"
       height="110vh"
       bgPosition="center"
       bgSize="cover"
@@ -157,10 +165,10 @@ const UploadPhoto = () => {
           <Image borderRadius="full" boxSize="80px" src="logo.png" alt="logo" />
           <VStack spacing={0}>
             <Heading textAlign="center" fontSize="3.5rem">
-              CancerSense
+              NeuroScan
             </Heading>
             <Heading textAlign="center" fontSize="1.2rem">
-              AI-Powered Mammography Analyzer
+              AI-Powered Brain MRI Analyzer
             </Heading>
           </VStack>
         </HStack>
@@ -171,20 +179,19 @@ const UploadPhoto = () => {
           alignItems="center"
         >
           <Text textAlign="center" fontSize="0.8rem">
-            CancerSense is a web application that utilizes Convolutional
-            Neural Networks (CNNs) for mammography analysis. Upload your
-            mammography images to receive instant probabilities for cancer
-            detection, distinguishing between benign and malignant tumors, and
-            identifying normal scans. <br />
+            NeuroScan is a web application that utilizes Convolutional Neural
+            Networks (CNNs) for MRI brain scan analysis. Upload your MRI images
+            to receive instant probabilities for tumor classification,
+            distinguishing between various types such as ependymoma, germinoma,
+            glioblastoma, and identifying normal scans.
           </Text>
 
           <Text textAlign="center" fontSize="0.6rem" color="gray.500">
-            CancerSense uses mammography images from INbreast, MIAS, and DDSM
-            datasets, enhanced with preprocessing techniques. The dataset is
-            resized to 227x227 pixels. Credit: Lin, Ting-Yu, and Huang,
-            Mei-Ling.
+            NeuroScan uses MRI brain images from various reputable datasets,
+            enhanced with advanced preprocessing techniques. The dataset is
+            resized to 227x227 pixels.
             <Link href="https://doi.org/10.17632/ywsbh3ndr8.2" isExternal>
-              Dataset of Breast mammography images with Masses
+              Dataset of Brain MRI images with Tumors
             </Link>
           </Text>
         </Box>
@@ -210,7 +217,7 @@ const UploadPhoto = () => {
             size="sm"
             leftIcon={<AttachmentIcon />}
           >
-            Upload Mammography
+            Upload brain MRI of region of interest
           </Button>
           {/* Display file name if image is selected */}
           {imagePreview && (
@@ -223,7 +230,7 @@ const UploadPhoto = () => {
         {imagePreview && (
           <Image
             src={imagePreview}
-            alt="Mammography Preview"
+            alt="MRI Preview"
             boxSize="227px"
             borderRadius="1rem"
             boxShadow="rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px"
@@ -236,7 +243,7 @@ const UploadPhoto = () => {
             colorScheme="pink"
             onClick={handleSubmit}
           >
-            Check for Cancer
+            Check for Cancer and classification
           </Button>
         )}
         {/* Display analysis result */}
